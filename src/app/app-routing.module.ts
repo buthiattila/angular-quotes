@@ -7,6 +7,7 @@ import {HomeComponent} from "./features/public/home/home.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
+  {path: 'quotes', loadChildren: () => import('./features/quotes/quotes.module').then(m => m.QuotesModule)},
   {path: '', redirectTo: environment.config.homePageRoute, pathMatch: 'full'},
   {path: '**', redirectTo: environment.config.homePageRoute}
 ];

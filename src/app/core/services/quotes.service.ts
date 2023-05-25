@@ -12,13 +12,8 @@ import {Quote, Quotes} from "../types/quote.type";
 export class QuotesService {
   private httpService = inject(HttpService);
 
-  private quotes = new BehaviorSubject<Quote[] | null>(null);
-  quotes$ = this.quotes.asObservable();
-
-  getAllQuotes(): void {
-    this.httpService.getRequest(environment.api.quotes).subscribe((response: Quotes) => {
-      this.quotes.next(response.quotes);
-    });
+  getAllQuotes(): Observable<Quotes> {
+    return this.httpService.getRequest(environment.api.quotes);
   }
 
   getRandomQuote(): Observable<Quote> {

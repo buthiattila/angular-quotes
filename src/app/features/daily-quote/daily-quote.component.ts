@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {Subject} from 'rxjs';
+import {Subject, takeUntil} from 'rxjs';
 
 import {Quote} from "../../core/types/quote.type";
 import {QuotesService} from "../../core/services/quotes.service";
@@ -13,17 +13,15 @@ export class DailyQuoteComponent {
 
   private quotesService = inject(QuotesService);
 
-  title = "Napi idézet";
-
+  private unsubscribe = new Subject<void>();
   quote: Quote = {
     id: 0,
     quote: '',
     author: ''
   };
-  private unsubscribe = new Subject<void>();
 
   ngOnInit(): void {
-    this.quotesService.getRandomQuote().subscribe((response: Quote) => {
+    this.quotesService.getRandomQuote().pipe(takeUntil(this.unsubscribe)).subscribe((response: Quote) => {
       this.quote = response;
     });
   }

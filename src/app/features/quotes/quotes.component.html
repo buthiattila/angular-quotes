@@ -1,1 +1,11 @@
-<p>quotes works!</p>
+<div *ngIf="quotes$|async as quotesList;">
+  <div class="row">
+    <div class="col-md-6" *ngFor="let quote of quotesList">
+      <div class="quoteCard">
+        <div class="title">{{quote.id}}. idézet</div>
+        <div class="quote">{{quote.quote}}</div>
+        <div class="author">{{quote.author}}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+.quoteCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, .125);
+  border-radius: .25rem;
+  padding: 1rem 1rem;
+  margin: 1rem;
+  filter: drop-shadow(10px 10px 4px #9f9b9b);
+
+  > div {
+    padding: .5rem 0;
+  }
+
+  .title {
+    font-weight: bold;
+  }
+
+  .quote {
+    font-style: italic;
+
+    &:before {
+      content: '"';
+    }
+
+    &:after {
+      content: '"';
+    }
+  }
+
+  .author {
+    text-align: right;
+    font-size: .7rem;
+  }
+}

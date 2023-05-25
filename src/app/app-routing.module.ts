@@ -3,11 +3,12 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {environment} from "../environments/environment";
 
-import {HomeComponent} from "./features/public/home/home.component";
+import {HomeComponent} from "./features/home/home.component";
+import {DailyQuoteComponent} from "./features/daily-quote/daily-quote.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'quotes', loadChildren: () => import('./features/quotes/quotes.module').then(m => m.QuotesModule)},
+  {path: 'dailyQuote', component: DailyQuoteComponent, title: 'Napi idézet'},
   {path: '', redirectTo: environment.config.homePageRoute, pathMatch: 'full'},
   {path: '**', redirectTo: environment.config.homePageRoute}
 ];

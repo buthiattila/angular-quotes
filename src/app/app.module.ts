@@ -3,18 +3,22 @@ import {BrowserModule, Title, Meta} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 
-import {AppComponent} from './app.component';
-import {HeaderComponent} from "./features/public/header/header.component";
-
 import {AppRoutingModule} from './app-routing.module';
 import {MaterialModule} from './utils/material.module';
-import {HomeComponent} from "./features/public/home/home.component";
+
+import {AppComponent} from './app.component';
+import {HeaderComponent} from "./features/header/header.component";
+import {HomeComponent} from "./features/home/home.component";
+import {DailyQuoteComponent} from "./features/daily-quote/daily-quote.component";
+import {QuotesComponent} from "./features/quotes/quotes.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
+    DailyQuoteComponent,
+    QuotesComponent,
   ],
   imports: [
     BrowserModule,

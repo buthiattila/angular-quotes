@@ -1,0 +1,19 @@
+.quote {
+  h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-style: italic;
+
+    &:before {
+      content: '"';
+    }
+
+    &:after {
+      content: '"';
+    }
+  }
+
+  .author{
+    text-align: right;
+  }
+}

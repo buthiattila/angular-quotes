@@ -2,7 +2,7 @@
   <mat-form-field class="w-100">
     <mat-label>Keresés</mat-label>
     <input matInput type="text" class="form-control" id="search" [(ngModel)]="searchText" (input)="checkInput()">
-    <small>A kereséshez minimum 3 karakter szükséges</small>
+    <small>A kereséshez minimum {{minSearchLenght}} karakter szükséges</small>
   </mat-form-field>
 </div>
 
@@ -17,3 +17,9 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="searchText.length>minSearchLenght && !filteredQuotes.length">
+  <h1 class="text-center">Nincs találat</h1>
+</div>
+
+

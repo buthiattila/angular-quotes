@@ -14,6 +14,7 @@ export class QuotesComponent {
   private quotesService = inject(QuotesService);
   private unsubscribe = new Subject<void>();
 
+  minSearchLenght: number = 3;
   quotes: Quote[] = [];
   filteredQuotes: Quote[] = [];
   searchText: string = '';
@@ -36,7 +37,7 @@ export class QuotesComponent {
   }
 
   applyFilter() {
-    if (this.searchText.length >= 3) {
+    if (this.searchText.length >= this.minSearchLenght) {
       this.filteredQuotes = this.quotes.filter(quote =>
         quote.quote.toLowerCase().includes(this.searchText.toLowerCase())
       );

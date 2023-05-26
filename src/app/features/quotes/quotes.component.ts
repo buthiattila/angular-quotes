@@ -1,9 +1,8 @@
 import {Component, inject} from '@angular/core';
-import {BehaviorSubject, Subject, takeUntil} from 'rxjs';
+import {Subject} from 'rxjs';
 
 import {Quote, Quotes} from "../../core/types/quote.type";
 import {QuotesService} from "../../core/services/quotes.service";
-import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-quotes',
@@ -13,21 +12,37 @@ import {environment} from "../../../environments/environment";
 export class QuotesComponent {
 
   private quotesService = inject(QuotesService);
-
   private unsubscribe = new Subject<void>();
 
-  quotes = new BehaviorSubject<Quote[] | null>(null);
-  quotes$ = this.quotes.asObservable();
+  quotes: Quote[] = [];
+  filteredQuotes: Quote[] = [];
+  searchText: string = '';
 
   ngOnInit(): void {
     this.quotesService.getAllQuotes().subscribe((response: Quotes) => {
-      this.quotes.next(response.quotes);
+      this.quotes = response.quotes;
+
+      this.applyFilter();
     });
   }
 
   ngOnDestroy(): void {
     this.unsubscribe.next();
     this.unsubscribe.complete();
+  }
+
+  checkInput() {
+    this.applyFilter();
+  }
+
+  applyFilter() {
+    if (this.searchText.length >= 3) {
+      this.filteredQuotes = this.quotes.filter(quote =>
+        quote.quote.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    } else {
+      this.filteredQuotes = this.quotes;
+    }
   }
 
 }

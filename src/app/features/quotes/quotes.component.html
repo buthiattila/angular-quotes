@@ -1,4 +1,12 @@
-<div *ngIf="quotes$|async as quotesList;">
+<div class="mt-4">
+  <mat-form-field class="w-100">
+    <mat-label>Keresés</mat-label>
+    <input matInput type="text" class="form-control" id="search" [(ngModel)]="searchText" (input)="checkInput()">
+    <small>A kereséshez minimum 3 karakter szükséges</small>
+  </mat-form-field>
+</div>
+
+<div *ngIf="filteredQuotes as quotesList;">
   <div class="row">
     <div class="col-md-6" *ngFor="let quote of quotesList">
       <div class="quoteCard">

@@ -1,25 +1,19 @@
-<div class="mt-4">
-  <mat-form-field class="w-100">
-    <mat-label>Keresés</mat-label>
-    <input matInput type="text" class="form-control" id="search" [(ngModel)]="searchText" (input)="checkInput()">
-    <small>A kereséshez minimum {{minSearchLenght}} karakter szükséges</small>
-  </mat-form-field>
-</div>
+<mat-form-field class="search-container">
+  <mat-label>Keresés</mat-label>
+  <input matInput type="text" id="search" [(ngModel)]="searchText" (input)="checkInput()">
+  <small>Minimum {{minSearchLength}} karakter szükséges</small>
+</mat-form-field>
 
-<div *ngIf="filteredQuotes as quotesList;">
-  <div class="row">
-    <div class="col-md-6" *ngFor="let quote of quotesList">
-      <div class="quoteCard">
-        <div class="title">{{quote.id}}. idézet</div>
-        <div class="quote">{{quote.quote}}</div>
-        <div class="author">{{quote.author}}</div>
-      </div>
-    </div>
+<div *ngIf="filteredQuotes as quotesList;" class="grid-container">
+  <div class="quoteCard" *ngFor="let quote of quotesList">
+    <div class="title">{{quote.id}}. idézet</div>
+    <div class="quote">{{quote.quote}}</div>
+    <div class="author">{{quote.author}}</div>
   </div>
 </div>
 
-<div *ngIf="searchText.length>minSearchLenght && !filteredQuotes.length">
-  <h1 class="text-center">Nincs találat</h1>
+<div *ngIf="searchText.length >= minSearchLength && !filteredQuotes.length" class="not-found">
+  <h1>Nincs találat</h1>
 </div>
 
 

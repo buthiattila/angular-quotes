@@ -14,10 +14,10 @@ export class QuotesComponent {
   private quotesService = inject(QuotesService);
   private unsubscribe = new Subject<void>();
 
-  minSearchLenght: number = 3;
+  minSearchLength: number = 3;
+  searchText: string = '';
   quotes: Quote[] = [];
   filteredQuotes: Quote[] = [];
-  searchText: string = '';
 
   ngOnInit(): void {
     this.quotesService.getAllQuotes().subscribe((response: Quotes) => {
@@ -37,7 +37,7 @@ export class QuotesComponent {
   }
 
   applyFilter() {
-    if (this.searchText.length >= this.minSearchLenght) {
+    if (this.searchText.length >= this.minSearchLength) {
       this.filteredQuotes = this.quotes.filter(quote =>
         quote.quote.toLowerCase().includes(this.searchText.toLowerCase())
       );

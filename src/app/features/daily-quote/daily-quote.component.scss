@@ -1,19 +1,45 @@
-.quote {
-  h1 {
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    font-style: italic;
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 
-    &:before {
-      content: '"';
+  .card {
+    .quote {
+      h1 {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        font-style: italic;
+
+        &:before {
+          content: '"';
+        }
+
+        &:after {
+          content: '"';
+        }
+      }
+
+      .author {
+        text-align: right;
+      }
     }
-
-    &:after {
-      content: '"';
-    }
-  }
-
-  .author{
-    text-align: right;
   }
 }
+
+@media (min-width: 768px) {
+  .card-container {
+    .card {
+      flex: 0 0 auto;
+      width: 50%;
+
+      .quote {
+        h1 {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+}
+
+
